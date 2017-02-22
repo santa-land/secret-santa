@@ -1,0 +1,17 @@
+{
+  "name": "secret-santa",
+  "version": "1.0.0",
+  "description": "Secret Santa is a Western Christmas tradition in which members of a group or community are randomly assigned a person to whom they anonymously give a gift.",
+  "main": "index.js",
+  "repository": "https://github.com/alireza-saberi/secret-santa.git",
+  "author": "Alireza Saberi <saberi.ar.eng@gmail.com>",
+  "license": "GPL",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "global": "^4.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
