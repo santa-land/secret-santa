@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-22 19:22:40
+* @Last Modified time: 2017-02-22 21:13:31
 */
 
 /******** Requiring libraries ********/
@@ -27,6 +27,7 @@ MongoClient.connect( config.mongoLaClient, (err, database) => {
 });
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/app'));
+app.use(bodyParser.json());
 
 /******** Routing ********/
 app.get('/', (req, res) => {
@@ -49,9 +50,23 @@ app.post('/register', (req, res) => {
             console.log('saved to database');
             res.redirect('/');
             });
-    }else{
+    } else {
         res.redirect('/');
     }
+});
 
+app.put('/update/:name', (req, res) => {
+    var gifter = req.params.name;
+    db.collection('gifters').findOneAndUpdate( 
+        {
+            query: {name: gifter},
+            update: {$set:{
+                name: req.body.name,
+                spouse: req.body.spouse
+            }}, function(err, result){
+                res.send(result);
+            }
+        }
+        );
 });
 
