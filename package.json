@@ -7,13 +7,25 @@
   "author": "Alireza Saberi <saberi.ar.eng@gmail.com>",
   "license": "GPL",
   "dependencies": {
+    "angular": "^1.6.2",
+    "angular-bootstrap": "^0.12.2",
+    "angular-route": "^1.6.2",
     "body-parser": "^1.16.1",
+    "bootstrap": "^3.3.7",
     "ejs": "^2.5.6",
     "express": "^4.14.1",
     "global": "^4.3.1",
-    "mongodb": "^2.2.24"
+    "jquery": "^3.1.1",
+    "mongodb": "^2.2.24",
+    "sass": "^0.5.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-jslint": "^1.0.10",
+    "gulp-minify": "^0.0.15",
+    "gulp-processhtml": "^1.1.0",
+    "jsdoc": "^3.4.3",
     "nodemon": "^1.11.0"
   }
 }

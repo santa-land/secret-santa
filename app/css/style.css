@@ -2,5 +2,20 @@
 * @Author: Ali
 * @Date:   2017-02-22 18:36:32
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-22 18:45:25
+* @Last Modified time: 2017-02-23 13:10:48
 */
+.navbar-inverse.navbar-fixed-top {
+    background-color: rgb(188,27,57);
+    position: relative;
+}
+
+.navbar-header {
+    position: absolute;
+    left: 50%;
+    margin-left: -156px !important;
+    display: block;
+}
+
+.centers {
+    margin-top: 170px;
+}
