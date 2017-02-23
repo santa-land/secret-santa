@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-22 21:13:31
+* @Last Modified time: 2017-02-22 21:38:55
 */
 
 /******** Requiring libraries ********/
@@ -68,5 +68,16 @@ app.put('/update/:name', (req, res) => {
             }
         }
         );
+});
+
+app.delete('/delete/:name', function (req, res) {
+    var gifter = req.params.name;
+    db.candidateList.findOneAndDelete(
+        {
+            query: { name: gifter}, 
+            function (err, result) {
+                res.json(result);
+            }
+        });
 });
 
