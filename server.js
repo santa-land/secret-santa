@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-22 21:38:55
+* @Last Modified time: 2017-02-24 04:52:00
 */
 
 /******** Requiring libraries ********/
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-    if (req.body.name.length !== 0){
+    if (req.body.name.length !== 0 && req.body.email.length !== 0 && req.body.pass.length !== 0){
         var newGifter = {};
         newGifter.name = req.body.name.toLowerCase();
         newGifter.spouse = req.body.spouse.toLowerCase();

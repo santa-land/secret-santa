@@ -2,24 +2,32 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 03:50:31
+* @Last Modified time: 2017-02-24 04:49:09
 */
 (function(){
     'use strict';
-    angular.module('secretSantaApp').controller('secretSantaCtrl', ['$scope', function($scope){
-        $scope.santas = 0;
-        $scope.lastSanta = "";
-        $scope.registerStat = "";
-        $scope.gifter = {};
-        $scope.getter = {};
+    angular.module('secretSantaApp').controller('secretSantaCtrl', ['$scope', 'santa', function($scope, santa){
+
+        function init(){
+            $scope.santas = 0;
+            $scope.lastSanta = "";
+            $scope.registerStat = "";
+            $scope.gifter = {};
+            $scope.getter = {};
+        }
+
+        init();
 
         $scope.addGifter = function(){
             $scope.gifter.name = $scope.gifter.name || '';
             $scope.gifter.spouse = $scope.gifter.spouse || '';
             $scope.gifter.email = $scope.gifter.email || '';
             $scope.gifter.pass = $scope.gifter.pass || '';
-            if ($scope.gifter.name.length && $scope.gifter.email.length && $scope.gifter.pass.length){
+            if ($scope.gifter.name.length !==0 && $scope.gifter.email.length !==0 && $scope.gifter.pass.length !==0){
                 console.log("addGifter: Good to talk to server");
+                santa.post($scope.gifter).then(function(response){
+                    console.log('New Santa is added');
+                });
             }
         };
 
@@ -30,7 +38,7 @@
         $scope.getMatch = function(){
             $scope.getter.email = $scope.getter.email || '';
             $scope.getter.pass = $scope.getter.pass || '';
-            if ($scope.getter.email.length && $scope.getter.pass.length){
+            if ($scope.getter.email.length !==0 && $scope.getter.pass.length !==0){
                 console.log("getMatch: Good to talk to server");
             }
         };
