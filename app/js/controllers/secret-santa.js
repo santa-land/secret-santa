@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 10:53:42
+* @Last Modified time: 2017-02-24 11:40:37
 */
 (function(){
     'use strict';
@@ -16,8 +16,12 @@
             $scope.matchalert = false;
             $scope.gifter = {};
             $scope.getter = {};
+            santa.lastSanta().then(function(response){
+                var last = response.data[0].name;
+                var lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
+                $scope.lastSanta = "" || lastSanta;
+            });
         }
-
         init();
 
         $scope.addGifter = function(){

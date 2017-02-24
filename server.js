@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 10:30:32
+* @Last Modified time: 2017-02-24 11:32:15
 */
 
 /******** Requiring libraries ********/
@@ -30,10 +30,13 @@ app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
 /******** Routing ********/
-app.get('/', (req, res) => {
-    var cursor = db.collection('gifters').find().toArray(function(err, results) {
+app.get('/lastsanta', (req, res) => {
+    console.log("who is the last santa!");
+    var cursor = db.collection('gifters').find().limit(1).sort({$natural:-1}).toArray((err, results) => {
          if (err) return console.log(err);
          // res.render('index.ejs', {gifters: results});
+         console.log(results);
+         res.json(results);
     });
 });
 
