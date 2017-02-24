@@ -12,13 +12,13 @@
         <link rel="stylesheet" href="css/style.css">
         <!--/build-->
     </head>
-    <body>
+    <body data-ng-app="secretSantaApp">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#/"><img src="images/santa.png" class="img-responsive img-circle" alt="Responsive image"></a>
                 </div>
         </nav>
-        <div class="container-fluid centers">
+        <div class="container-fluid centers" data-ng-controller="secretSantaCtrl">
             <div class="row">
                 <div class="col-xs-12 col-md-4">
                    <div class="panel panel-success">
@@ -26,13 +26,13 @@
                             <h3 class="panel-title">Santa's Dashboad</h3>
                         </div>
                         <div class="panel-body">
-                            <h4>Number of our Santas: </h4>
-                            <h4>Last Santa: </h4>
-                            <h4>Registration status:</h4>
+                            <h4>Number of our Santas: {{ santas }}</h4>
+                            <h4>Last Santa: {{ lastSanta }}</h4>
+                            <h4>Registration status: {{ registerStat }}</h4>
                         </div>
                         <div class="panel-footer">
                             <p>Lock the registration & make matches
-                                <button class="btn btn-danger pull-right">APPLY</button>
+                                <button class="btn btn-danger pull-right" data-ng-click="apply()">APPLY</button>
                             </p> 
                         </div>
                     </div> 
@@ -46,26 +46,32 @@
                             <p>
                                 To sign up for the gift exchange enter your email and password below.
                             </p>
-                            <form action="register" method="POST">
+                            <form>
                                 <div class="form-group">
                                     <label for="name">
                                         Name
                                     </label>
-                                    <input type="text" id="name" placeholder="John" class="form-control" name="name">
+                                    <input type="text" id="name" placeholder="John" class="form-control" data-ng-model="gifter.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="spouse">
+                                        Spouse Name If Applicable
+                                    </label>
+                                    <input type="text" id="spouse" placeholder="Sophia" class="form-control" data-ng-model="gifter.spouse">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">
                                         Email
                                     </label>
-                                    <input type="email" id="email" placeholder="john@smithfamily.com" class="form-control" name="email">
+                                    <input type="email" id="email" placeholder="john@smithfamily.com" class="form-control" data-ng-model="gifter.email">
                                 </div>
                                 <div class="form-group">
                                     <label for="pass">
                                         Password
                                     </label>
-                                    <input type="password" id="pass" placeholder="Password" class="form-control" name="pass">
+                                    <input type="password" id="pass" placeholder="Password" class="form-control" data-ng-model="gifter.pass">
                                 </div>
-                                <button type="submit" class="btn btn-primary">SINGUP</button>
+                                <button class="btn btn-primary" data-ng-click="addGifter()">SINGUP</button>
                             </form>
                         </div>
                     </div> 
@@ -78,20 +84,20 @@
                         <div class="panel-body">
                             <h4>Get your match here!</h4>
                             <p>Matches will be ready ones all entries are collected.</p>
-                            <form action="getmatch" method="POST">
+                            <form>
                                 <div class="form-group">
                                     <label for="email2">
                                         Email
                                     </label>
-                                    <input type="email" id="email2" placeholder="john@smithfamily.com" class="form-control" name="email2">
+                                    <input type="email" id="email2" placeholder="john@smithfamily.com" class="form-control" data-ng-model="getter.email">
                                 </div>
                                 <div class="form-group">
                                     <label for="pass2">
                                         Password
                                     </label>
-                                    <input type="password" id="pass2" placeholder="Password" class="form-control" name="pass2">
+                                    <input type="password" id="pass2" placeholder="Password" class="form-control" data-ng-model="getter.pass">
                                 </div>
-                                <button type="submit" class="btn btn-primary">GET MY MATCH</button>
+                                <button class="btn btn-primary" data-ng-click="getMatch()">GET MY MATCH</button>
                             </form>
                         </div>
                     </div> 
@@ -100,8 +106,9 @@
         </div>
 
         <!--build:js js/script.min.js-->
-        <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/angular/angular.min.js"></script>
+        <script src="./js/app.js"></script>
+        <script src="./js/controllers/secret-santa.js"></script>
         <!--/build-->
     </body>
 </html>
