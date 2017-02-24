@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 04:52:00
+* @Last Modified time: 2017-02-24 10:30:32
 */
 
 /******** Requiring libraries ********/
@@ -31,10 +31,9 @@ app.use(bodyParser.json());
 
 /******** Routing ********/
 app.get('/', (req, res) => {
-    //res.sendFile(__dirname + '/app/index.html');
     var cursor = db.collection('gifters').find().toArray(function(err, results) {
          if (err) return console.log(err);
-         res.render('index.ejs', {gifters: results});
+         // res.render('index.ejs', {gifters: results});
     });
 });
 
@@ -43,6 +42,8 @@ app.post('/register', (req, res) => {
         var newGifter = {};
         newGifter.name = req.body.name.toLowerCase();
         newGifter.spouse = req.body.spouse.toLowerCase();
+        newGifter.email = req.body.email;
+        newGifter.pass = req.body.pass;
         newGifter.match = '';
 
         db.collection('gifters').save(newGifter, (err, result) => {
@@ -50,6 +51,30 @@ app.post('/register', (req, res) => {
             console.log('saved to database');
             res.redirect('/');
             });
+    } else {
+        res.redirect('/');
+    }
+});
+
+app.post('/myMatch', (req, res) => {
+    if (req.body.email.length !== 0 && req.body.pass.length !== 0){
+        db.collection('gifters').find({ email: req.body.email }).toArray((err, results) => {
+            if (results.length !==0) {
+                // Correct email
+                for(var i = 0; i < results.length; i++){
+                    // Correct password
+                    if(results[i].pass == req.body.pass){
+                        res.json(results[i]);
+                    }else{
+                        // Wrong password
+                        res.json('');
+                    }
+                }
+            } else {
+                // Wrong email address
+                res.json(results[i]);
+            }
+        });
     } else {
         res.redirect('/');
     }

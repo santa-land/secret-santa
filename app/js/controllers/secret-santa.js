@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 04:49:09
+* @Last Modified time: 2017-02-24 10:53:42
 */
 (function(){
     'use strict';
@@ -12,6 +12,8 @@
             $scope.santas = 0;
             $scope.lastSanta = "";
             $scope.registerStat = "";
+            $scope.match = "N/A";
+            $scope.matchalert = false;
             $scope.gifter = {};
             $scope.getter = {};
         }
@@ -40,6 +42,20 @@
             $scope.getter.pass = $scope.getter.pass || '';
             if ($scope.getter.email.length !==0 && $scope.getter.pass.length !==0){
                 console.log("getMatch: Good to talk to server");
+                santa.getMatch($scope.getter).then(function(response){
+                    if (response.data) {
+                        console.log('Your match is ...');
+                        if (response.data.match.length !==0){
+                            $scope.match = response.data.match;
+                            $scope.matchalert = false;
+                        }else{
+                            $scope.match = "N/A";
+                            $scope.matchalert = false;
+                        }
+                    }else{
+                        $scope.matchalert = true;
+                    }
+                });
             }
         };
 
