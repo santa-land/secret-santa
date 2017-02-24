@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-24 03:59:26
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 12:29:15
+* @Last Modified time: 2017-02-24 13:31:51
 */
 (function(){
     'use strict';
@@ -19,6 +19,9 @@
         };
         santa.count = function(){
             return $http.get('/countsanta');
+        };
+        santa.matchMaker = function(){
+            return $http.get('/makeMatch');
         };
         return santa;
     }]);

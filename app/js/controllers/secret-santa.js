@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 12:35:32
+* @Last Modified time: 2017-02-24 13:10:59
 */
 (function(){
     'use strict';
@@ -41,7 +41,9 @@
         };
 
         $scope.apply = function(){
-            console.log("Lock the registration and make matches!");
+            santa.matchMaker().then(function(response){
+                console.log("Lock the registration and make matches!");
+            });
         };
 
         $scope.getMatch = function(){

@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 12:39:38
+* @Last Modified time: 2017-02-24 15:10:02
 */
 
 /******** Requiring libraries ********/
@@ -79,12 +79,51 @@ app.post('/myMatch', (req, res) => {
                 }
             } else {
                 // Wrong email address
-                res.json(results[i]);
+                res.json(results);
             }
         });
     } else {
         res.redirect('/');
     }
+});
+
+app.get('/makeMatch', (req, res) => {
+    // var cursor = db.collection('gifters').find().toArray((err, results) => {
+    //      if (err) return console.log(err);
+    //      res.json(results.length);
+    //      var couples = [];
+    //      var singles = [];
+    //      var length = results.length;
+    //      while (length !== 0){
+    //         console.log(results[length-1]);
+    //         if(results[length-1].spouse.length !==0){
+    //             couples.push(results[length-1].spouse);
+    //         }else{
+    //             singles.push(results[length-1].spouse);
+    //         }
+    //         length-=1;
+    //      }
+    //      var sortedSanta = singles.concat(couples);
+    //      var sortedLength = sortedSanta.length;
+    //      while(sortedLength !==0 ){
+    //         sortedSanta[sortedLength -1].name;
+    //         sortedSanta[sortedLength -1].match;
+    //         sortedLength-=1;
+
+    //         //
+    //         var nameIndex = -1;
+    //         var matchIndex = -1;
+    //         for (var i = 0; i < results.length; i++){
+    //             if (results[i].name === sortedSanta[sortedLength -1].name){
+    //                 nameIndex = i;
+    //             }else(results[i].name === sortedSanta[sortedLength -1].match){
+    //                 matchIndex = i;
+    //             }
+    //         }
+
+            
+    //      }
+    // });
 });
 
 app.put('/update/:name', (req, res) => {
