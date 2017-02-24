@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 12:32:32
+* @Last Modified time: 2017-02-24 12:39:38
 */
 
 /******** Requiring libraries ********/
@@ -43,7 +43,6 @@ app.get('/countsanta', (req, res) => {
          res.json(results.length);
     });
 });
-
 
 app.post('/register', (req, res) => {
     if (req.body.name.length !== 0 && req.body.email.length !== 0 && req.body.pass.length !== 0){

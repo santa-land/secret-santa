@@ -25,10 +25,10 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Santa's Dashboad</h3>
                         </div>
-                        <div class="panel-body">
-                            <h4>Number of our Santas: {{ santas }}</h4>
-                            <h4>Last Santa: {{ lastSanta }}</h4>
-                            <h4>Registration status: {{ registerStat }}</h4>
+                        <div class="panel-body ng-cloak">
+                            <p>Number of our Santas: {{ santas }}</p>
+                            <p>Last Santa: {{ lastSanta }}</p>
+                            <p>Registration status: {{ registerStat }}</p>
                         </div>
                         <div class="panel-footer">
                             <p>Lock the registration & make matches
@@ -42,7 +42,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Santa Sign Up Center</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body ng-cloak">
                             <p>
                                 To sign up for the gift exchange enter your email and password below.
                             </p>
@@ -92,7 +92,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Santa Match Center</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body ng-cloak">
                             <h4>Get your match here!</h4>
                             <p>Matches will be ready ones all entries are collected.</p>
                             <form novalidate name="myMatchForm">
@@ -120,7 +120,7 @@
                                 </span>
                             </form>
                         </div>
-                        <div class="panel-footer">
+                        <div class="panel-footer ng-cloak">
                             <p data-ng-show="true">
                                 You match is: {{ match }}
                             </p>
