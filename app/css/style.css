@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 18:36:32
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-23 13:10:48
+* @Last Modified time: 2017-02-24 02:18:02
 */
 .navbar-inverse.navbar-fixed-top {
     background-color: rgb(188,27,57);
@@ -18,4 +18,8 @@
 
 .centers {
     margin-top: 170px;
+}
+
+.alert {
+    padding: 5px;
 }

@@ -46,12 +46,16 @@
                             <p>
                                 To sign up for the gift exchange enter your email and password below.
                             </p>
-                            <form>
+                            <form novalidate name="myRegisterForm">
                                 <div class="form-group">
                                     <label for="name">
-                                        Name
+                                        Name <span class="alert alert-danger" ng-show="myRegisterForm.name.$touched && myRegisterForm.name.$invalid">
+                                         <span ng-show="myRegisterForm.name.$error.required">
+                                         is required.
+                                        </span>
+                                    </span>
                                     </label>
-                                    <input type="text" id="name" placeholder="John" class="form-control" data-ng-model="gifter.name">
+                                    <input type="text" id="name" placeholder="John" class="form-control" data-ng-model="gifter.name" name="name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="spouse">
@@ -61,17 +65,24 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">
-                                        Email
+                                        Email <span class="alert alert-danger" ng-show="myRegisterForm.email.$touched && myRegisterForm.email.$invalid">
+                                        <span ng-show="myRegisterForm.email.$error.required">is required.</span>
+                                        <span ng-show="myRegisterForm.email.$error.email">Invalid email address.</span>
+                                        </span>
                                     </label>
-                                    <input type="email" id="email" placeholder="john@smithfamily.com" class="form-control" data-ng-model="gifter.email">
+                                    <input type="email" id="email" placeholder="john@smithfamily.com" class="form-control" data-ng-model="gifter.email" name="email"required>
                                 </div>
                                 <div class="form-group">
                                     <label for="pass">
-                                        Password
+                                        Password <span class="alert alert-danger" ng-show="myRegisterForm.pass.$touched && myRegisterForm.pass.$invalid">
+                                        <span ng-show="myRegisterForm.pass.$error.required">
+                                            is required.
+                                        </span>
+                                    </span>
                                     </label>
-                                    <input type="password" id="pass" placeholder="Password" class="form-control" data-ng-model="gifter.pass">
+                                    <input type="password" id="pass" placeholder="Password" class="form-control" data-ng-model="gifter.pass" name="pass" required>
                                 </div>
-                                <button class="btn btn-primary" data-ng-click="addGifter()">SINGUP</button>
+                                <button class="btn btn-primary" ng-disabled="myRegisterForm.name.$touched && myRegisterForm.name.$invalid || myRegisterForm.email.$touched && myRegisterForm.email.$invalid || myRegisterForm.pass.$touched && myRegisterForm.pass.$invalid" data-ng-click="addGifter()">SINGUP</button>
                             </form>
                         </div>
                     </div> 
@@ -84,20 +95,27 @@
                         <div class="panel-body">
                             <h4>Get your match here!</h4>
                             <p>Matches will be ready ones all entries are collected.</p>
-                            <form>
+                            <form novalidate name="myMatchForm">
                                 <div class="form-group">
                                     <label for="email2">
-                                        Email
+                                        Email <span class="alert alert-danger" ng-show="myMatchForm.email2.$touched && myMatchForm.email2.$invalid">
+                                        <span ng-show="myMatchForm.email2.$error.required">is required. </span>
+                                        <span ng-show="myMatchForm.email2.$error.email">Invalid email address.</span>
+                                    </span>
                                     </label>
-                                    <input type="email" id="email2" placeholder="john@smithfamily.com" class="form-control" data-ng-model="getter.email">
+                                    <input type="email" id="email2" placeholder="john@smithfamily.com" class="form-control" data-ng-model="getter.email" name="email2" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="pass2">
-                                        Password
+                                        Password <span class="alert alert-danger" ng-show="myMatchForm.pass2.$touched && myMatchForm.pass2.$invalid">
+                                        <span ng-show="myMatchForm.pass2.$error.required">
+                                        is required
+                                        </span>
+                                    </span>
                                     </label>
-                                    <input type="password" id="pass2" placeholder="Password" class="form-control" data-ng-model="getter.pass">
+                                    <input type="password" id="pass2" placeholder="Password" class="form-control" data-ng-model="getter.pass" name="pass2" required>
                                 </div>
-                                <button class="btn btn-primary" data-ng-click="getMatch()">GET MY MATCH</button>
+                                <button class="btn btn-primary" data-ng-click="getMatch()" ng-disabled="myMatchForm.pass2.$touched && myMatchForm.pass2.$invalid || myMatchForm.email2.$touched && myMatchForm.email2.$invalid">GET MY MATCH</button>
                             </form>
                         </div>
                     </div> 
