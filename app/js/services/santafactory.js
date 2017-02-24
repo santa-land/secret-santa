@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-24 03:59:26
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 11:25:06
+* @Last Modified time: 2017-02-24 12:29:15
 */
 (function(){
     'use strict';
@@ -15,8 +15,10 @@
             return $http.post('/myMatch', me);
         };
         santa.lastSanta = function(){
-            console.log('who is last santa');
             return $http.get('/lastsanta');
+        };
+        santa.count = function(){
+            return $http.get('/countsanta');
         };
         return santa;
     }]);

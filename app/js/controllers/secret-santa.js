@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 11:40:37
+* @Last Modified time: 2017-02-24 12:35:32
 */
 (function(){
     'use strict';
@@ -20,6 +20,9 @@
                 var last = response.data[0].name;
                 var lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
                 $scope.lastSanta = "" || lastSanta;
+            });
+            santa.count().then(function(response){
+                $scope.santas = response.data;
             });
         }
         init();
