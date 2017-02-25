@@ -10,6 +10,7 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 - [NodeJS](https://nodejs.org/en/)
 - [Express](http://expressjs.com/)
 - [MongoDB](https://www.mongodb.org/), [MonngoLab](https://mlab.com/welcome/)
+- [Yarn](https://yarnpkg.com/lang/en/) Facebook Package Manager
 
 ## APIs and technologies in the next few days :stuck_out_tongue_closed_eyes:
 Time for this project was short. I have to add moer stuff into that soon
@@ -18,17 +19,14 @@ Time for this project was short. I have to add moer stuff into that soon
 - [Jasmine](): As my test framework.
 - [SASS](): SCC of this project was short. but for warm up I put some SASS codes.
 
-## How to make it work on your machine (To Mostafa)
-- Download ZIP
-- You have to be able to install Nodejs on your windows machine globally.(follow the instruction [here](https://nodejs.org/en/download/)). It comes with npm.
-- You have be be able to install MongoDB in you machine.(follow the instruction [here](http://docs.mongodb.org/v3.0/tutorial/install-mongodb-on-windows/))
-- Fire MongoDB servive on the other folder tht you made and make a database document named `candidateList` nad just leave it like that. instruction is [here](https://www.youtube.com/watch?v=oVIeMfvgTz8)
-- Go to the folder that you have downloaded project. You see `server.js` and `package.json` files here by comaand lines via `CMD`
-- Type in this  folder `npm install` which  installs all of the required dependencies for the front-end and back-end
-- Type `bower install` which installs some more dependencies.
-- Type `node server.js` which runs the server file and pushes all of the files to you localhost in browser.
-- Prefably use Chrome now. and type `localhost:8000` in url. You will see the the home page of your project.
-- You dont have candidates now, but you can start adding them.  Remember that all of these candiate are only on your local machine.
-- You have for get configuration directory from me separately.
-- I have to update uploading image module later, which I had some difficulty making it last night,
-- I will modify more after these interviews.
+## How to make it work on your machine
+- Assumptions: You have 'linux like terminal', `node` and `yarn` on your machine
+- Clone the repository on your computer
+- Run `yarn` in the `root directory`,and in the `app` directory of the project to get all of dependencies.
+- You need a `config` folder inside project `root`, and inside `config`the should be two files `config.js` and `development.json. I can't put the here due to sensitive data.
+- Type `npm start` or `node server.js` in the working directory shell.
+- Go to your browser and type `localhost:3000` or `http://localhost:3000/`
+
+## License
+
+The contents of this repository are covered under the [GPL License](LICENSE.txt). Please be Advised before redistributing.
