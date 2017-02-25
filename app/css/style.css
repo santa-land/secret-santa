@@ -2,11 +2,16 @@
 * @Author: Ali
 * @Date:   2017-02-22 18:36:32
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 12:58:48
+* @Last Modified time: 2017-02-24 23:05:19
 */
 .navbar-inverse.navbar-fixed-top {
     background-color: rgb(188,27,57);
     position: relative;
+}
+
+.navbar-inverse.navbar-fixed-bottom {
+    background-color: rgb(188,27,57);
+    position: fixed;
 }
 
 .navbar-header {
@@ -14,6 +19,8 @@
     left: 50%;
     margin-left: -156px !important;
     display: block;
+    color: white;
+    margin-top: 15px;
 }
 
 .centers {

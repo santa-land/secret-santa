@@ -23,17 +23,57 @@
                 <div class="col-xs-12 col-md-4">
                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Santa's Dashboad</h3>
+                            <h3 class="panel-title">Admin Panel</h3>
                         </div>
                         <div class="panel-body ng-cloak">
-                            <p>Number of our Santas: {{ santas }}</p>
-                            <p>Last Santa: {{ lastSanta }}</p>
-                            <p>Registration status: {{ registerStat }}</p>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Number of Our Santas</td>
+                                        <td>{{ santas }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Santa</td>
+                                        <td>{{ lastSanta }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Registration Status</td>
+                                        <td>{{ registerStat }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form novalidate name="adminForm">
+                                <div class="form-group">
+                                    <label for="email">
+                                        Email <span class="alert alert-danger" data-ng-show="adminForm.email.$touched && adminForm.email.$invalid">
+                                        <span data-ng-show="adminForm.email.$error.required">is required. </span>
+                                        <span data-ng-show="adminForm.email.$error.email">Invalid email address.</span>
+                                    </span>
+                                    </label>
+                                    <input type="email" id="email" placeholder="admin@smithfamily.com" class="form-control" data-ng-model="admin.email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">
+                                        Password <span class="alert alert-danger" data-ng-show="adminForm.pass.$touched && adminForm.pass.$invalid">
+                                        <span data-ng-show="adminForm.pass.$error.required">
+                                        is required
+                                        </span>
+                                    </span>
+                                    </label>
+                                    <input type="password" id="pass" placeholder="Password" class="form-control" data-ng-model="admin.pass" name="pass" required>
+                                </div>
+                                <button class="btn btn-primary" data-ng-click="" data-ng-disabled="adminForm.pass.$touched && adminForm.pass.$invalid || adminForm.email.$touched && adminForm.email.$invalid">TERMINATE & MAKE MATCHES</button> 
+                                <button class="btn btn-danger pull-right" data-ng-click=""  data-ng-disabled="adminForm.pass.$touched && adminForm.pass.$invalid || adminForm.email.$touched && adminForm.email.$invalid">DELETE & RENEW</button>
+                            </form>
                         </div>
                         <div class="panel-footer">
-                            <p>Lock the registration & make matches
-                                <button class="btn btn-danger pull-right" data-ng-click="apply()">APPLY</button>
-                            </p> 
+                            <footer data-ng-show="" class="alert alert-danger" role="alert">
+                                    Your input was wrong!
+                            </footer>
+                            <footer>* Only Admin can terminate & make matches.</footer>
+                            <footer>* Only Admin can delecte and renew santa database.</footer>
+                            <footer>* Only Admin has email/pass.</footer>
+                            <footer>* Correct email/pass are required for above actions.</footer>
                         </div>
                     </div> 
                 </div>
@@ -44,7 +84,7 @@
                         </div>
                         <div class="panel-body ng-cloak">
                             <p>
-                                To sign up for the gift exchange enter your email and password below.
+                                To sign up for the gift exchange enter your name, please.
                             </p>
                             <form novalidate name="myRegisterForm">
                                 <div class="form-group">
@@ -63,73 +103,52 @@
                                     </label>
                                     <input type="text" id="spouse" placeholder="Sophia" class="form-control" data-ng-model="gifter.spouse">
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">
-                                        Email <span class="alert alert-danger" data-ng-show="myRegisterForm.email.$touched && myRegisterForm.email.$invalid">
-                                        <span data-ng-show="myRegisterForm.email.$error.required">is required.</span>
-                                        <span data-ng-show="myRegisterForm.email.$error.email">Invalid email address.</span>
-                                        </span>
-                                    </label>
-                                    <input type="email" id="email" placeholder="john@smithfamily.com" class="form-control" data-ng-model="gifter.email" name="email"required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pass">
-                                        Password <span class="alert alert-danger" data-ng-show="myRegisterForm.pass.$touched && myRegisterForm.pass.$invalid">
-                                        <span data-ng-show="myRegisterForm.pass.$error.required">
-                                            is required.
-                                        </span>
-                                    </span>
-                                    </label>
-                                    <input type="password" id="pass" placeholder="Password" class="form-control" data-ng-model="gifter.pass" name="pass" required>
-                                </div>
                                 <button class="btn btn-primary" data-ng-disabled="myRegisterForm.name.$touched && myRegisterForm.name.$invalid || myRegisterForm.email.$touched && myRegisterForm.email.$invalid || myRegisterForm.pass.$touched && myRegisterForm.pass.$invalid" data-ng-click="addGifter()">SINGUP</button>
                             </form>
+                        </div>
+                        <div class="panel-footer">
+                            <footer>* We assume that all the participants have a unique name.</footer>
                         </div>
                     </div> 
                 </div>
                 <div class="col-xs-12 col-md-4">
                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Santa Match Center</h3>
+                            <h3 class="panel-title">Santa Shop Center</h3>
                         </div>
                         <div class="panel-body ng-cloak">
                             <h4>Get your match here!</h4>
                             <p>Matches will be ready ones all entries are collected.</p>
                             <form novalidate name="myMatchForm">
                                 <div class="form-group">
-                                    <label for="email2">
-                                        Email <span class="alert alert-danger" data-ng-show="myMatchForm.email2.$touched && myMatchForm.email2.$invalid">
-                                        <span data-ng-show="myMatchForm.email2.$error.required">is required. </span>
-                                        <span data-ng-show="myMatchForm.email2.$error.email">Invalid email address.</span>
-                                    </span>
-                                    </label>
-                                    <input type="email" id="email2" placeholder="john@smithfamily.com" class="form-control" data-ng-model="getter.email" name="email2" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pass2">
-                                        Password <span class="alert alert-danger" data-ng-show="myMatchForm.pass2.$touched && myMatchForm.pass2.$invalid">
-                                        <span data-ng-show="myMatchForm.pass2.$error.required">
-                                        is required
+                                    <label for="name2">
+                                        Name <span class="alert alert-danger" data-ng-show="myMatchForm.name2.$touched && myMatchForm.name2.$invalid">
+                                         <span data-ng-show="myMatchForm.name2.$error.required">
+                                         is required.
                                         </span>
                                     </span>
                                     </label>
-                                    <input type="password" id="pass2" placeholder="Password" class="form-control" data-ng-model="getter.pass" name="pass2" required>
+                                    <input type="text" id="name2" placeholder="John" class="form-control" data-ng-model="gifter.name" name="name2" required>
                                 </div>
-                                <button class="btn btn-primary" data-ng-click="getMatch()" data-ng-disabled="myMatchForm.pass2.$touched && myMatchForm.pass2.$invalid || myMatchForm.email2.$touched && myMatchForm.email2.$invalid">GET MY MATCH</button> <span data-ng-show="matchalert" class="alert alert-danger" role="alert">
+                                <button class="btn btn-primary" data-ng-click="getMatch()" data-ng-disabled="myMatchForm.name2.$touched && myMatchForm.name2.$invalid">GET MY MATCH</button> <span data-ng-show="matchalert" class="alert alert-danger" role="alert">
                                     Your input was wrong!
                                 </span>
                             </form>
                         </div>
                         <div class="panel-footer ng-cloak">
-                            <p data-ng-show="true">
-                                You match is: {{ match }}
-                            </p>
+                            <footer data-ng-show="true">
+                                Your match is: {{ match }}
+                            </footer>
                         </div>
                     </div> 
                 </div>
             </div>
         </div>
-
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+                <div class="navbar-header">
+                    MADE WITH LOVE <span class="heart">❤</span> IN MONTREAL 2017
+                </div>
+        </nav>
         <!--build:js js/script.min.js-->
         <script src="./node_modules/angular/angular.min.js"></script>
         <script src="./js/app.js"></script>
