@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 12:28:22
+* @Last Modified time: 2017-02-25 13:13:33
 */
 'use strict'
 
@@ -52,10 +52,8 @@ app.post('/register', (req, res) => {
         newSanta.name = req.body.name.toLowerCase();
         newSanta.spouse = req.body.spouse.toLowerCase();
         newSanta.match = '';
-        console.log('adding new santa');
         db.collection('santas').save(newSanta, (err, result) => {
             if (err) return console.log(err);
-            console.log('saved to database');
             });
             // I added this to handle duplicated case but it didnot work 
             db.collection('santas').ensureIndex({'name': newSanta.name}, {unique: true, dropDups: true});
@@ -84,19 +82,16 @@ app.post('/myMatch', (req, res) => {
 app.post('/makeMatch', (req, res) => {
     if (req.body.email.length !== 0 && req.body.pass.length !== 0){
         if (req.body.email === 'admin@smith.com' && req.body.pass === '123'){
-            console.log('Admin: Good, that you are the admin');
              // I am using shuffiling method.
                 var santas = [];
                 var matches = [];
                 var ok = false;
                 db.collection('santas').find().toArray((err, results) => {
                     if (err) return console.log(err);
-                    console.log('Admin: we have %s santa', results.length);
                     santas = results;
 
                     db.collection('santas').find().toArray((error, outputs) => {
                         if (error) return console.log(error);
-                        console.log('Admin: we have %s gift receivers', outputs.length);
                         matches = outputs;
 
                         //shuffle until a good match
@@ -132,14 +127,13 @@ app.post('/makeMatch', (req, res) => {
                 });
             res.send('We should have a match, now!');
         } else {
-            console.log('Admin: Bad, that you are not the admin');
             res.status(400).send('Wrong username and password for the admin');
         }
     }
 
 });
 
-app.delete('/deletefamily', (req, res)  => {
+app.post('/deletefamily', (req, res)  => {
      if (req.body.email.length !== 0 && req.body.pass.length !== 0){
         if (req.body.email === 'admin@smith.com' && req.body.pass === '123'){
             db.collection('santas').drop((err, doc) => {

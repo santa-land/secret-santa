@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-24 03:59:26
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 12:10:11
+* @Last Modified time: 2017-02-25 13:10:09
 */
 (function(){
     'use strict';
@@ -29,7 +29,7 @@
         };
 
         santa.removeFamily = function(admin){
-            return $http.delete('/deletefamily', admin);
+            return $http.post('/deletefamily', admin);
         };
 
         return santa;
