@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 12:12:30
+* @Last Modified time: 2017-02-25 12:28:22
 */
 'use strict'
 
@@ -66,21 +66,13 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/myMatch', (req, res) => {
-    if (req.body.email.length !== 0 && req.body.pass.length !== 0){
-        db.collection('santas').find({ email: req.body.email }).toArray((err, results) => {
+    if (req.body.name.length !== 0 ){
+        db.collection('santas').find({ name: req.body.name }).toArray((err, results) => {
             if (results.length !==0) {
-                // Correct email
-                for(var i = 0; i < results.length; i++){
-                    // Correct password
-                    if(results[i].pass == req.body.pass){
-                        res.json(results[i]);
-                    }else{
-                        // Wrong password
-                        res.json('');
-                    }
-                }
+                // Correct name
+                res.json(results[0]);
             } else {
-                // Wrong email address
+                // Wrong name
                 res.json(results);
             }
         });
@@ -147,7 +139,6 @@ app.post('/makeMatch', (req, res) => {
 
 });
 
-
 app.delete('/deletefamily', (req, res)  => {
      if (req.body.email.length !== 0 && req.body.pass.length !== 0){
         if (req.body.email === 'admin@smith.com' && req.body.pass === '123'){
@@ -159,7 +150,6 @@ app.delete('/deletefamily', (req, res)  => {
         }
      }
   });
-
 
 /**
  * Shuffles array in place. Fisher-Yates Shuffle 

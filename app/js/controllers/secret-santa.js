@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 12:08:48
+* @Last Modified time: 2017-02-25 12:23:22
 */
 (function(){
     'use strict';
@@ -59,7 +59,8 @@
             $scope.admin.email = $scope.admin.email || '';
             $scope.admin.pass = $scope.admin.pass || '';
             console.log("Deleting whole family pool");
-            santa.removeFamily().then(function(){
+
+            santa.removeFamily($scope.admin).then(function(){
                 init();
             }, function(error){
 
@@ -67,11 +68,10 @@
         };
 
         $scope.getMatch = function(){
-            $scope.getter.email = $scope.getter.email || '';
-            $scope.getter.pass = $scope.getter.pass || '';
-            if ($scope.getter.email.length !==0 && $scope.getter.pass.length !==0){
+            $scope.gifter.name = $scope.gifter.name || '';
+            if ($scope.gifter.name.length !==0){
                 console.log("getMatch: Good to talk to server");
-                santa.getMatch($scope.getter).then(function(response){
+                santa.getMatch($scope.gifter).then(function(response){
                     if (response.data) {
                         console.log('Your match is ...');
                         if (response.data.match.length !==0){
