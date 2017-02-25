@@ -6,7 +6,7 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 
 ## APIs and technologies used so far
 - HTML5, CSS, JS, [Bootstrap](http://getbootstrap.com/)
-- [AngularJS 1.X](https://angularjs.org/), [ng-file-upload from Daniel Farid](https://github.com/danialfarid/ng-file-upload)
+- [AngularJS 1.X](https://angularjs.org/)
 - [NodeJS](https://nodejs.org/en/)
 - [Express](http://expressjs.com/)
 - [MongoDB](https://www.mongodb.org/), [MonngoLab](https://mlab.com/welcome/)
@@ -14,10 +14,10 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 
 ## APIs and technologies in the next few days :stuck_out_tongue_closed_eyes:
 Time for this project was short. I have to add moer stuff into that soon
-- [Gulp]() : As my build tool
-- [JSdoc]() : To provide documentation for the JS codes. Codes are currently commented wisely for this
-- [Jasmine](): As my test framework.
-- [SASS](): SCC of this project was short. but for warm up I put some SASS codes.
+- [GulpJS](http://gulpjs.com/) : As my building tool
+- [JSdoc](http://usejsdoc.org/) : To provide documentation for the JS codes. Codes are currently commented wisely for this
+- [Jasmine](https://jasmine.github.io/): As my test framework.
+- [SASS](http://sass-lang.com/): SCC of this project was short. but for warm up I put some SASS codes.
 
 ## How to make it work on your machine
 - Assumptions: You have 'linux like terminal', `node` and `yarn` on your machine
@@ -30,3 +30,4 @@ Time for this project was short. I have to add moer stuff into that soon
 ## License
 
 The contents of this repository are covered under the [GPL License](LICENSE.txt). Please be Advised before redistributing.
+Start, fork, and collaboration is always appriciated :heart: as it is a fun project for me.
