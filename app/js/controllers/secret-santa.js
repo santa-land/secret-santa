@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 13:10:59
+* @Last Modified time: 2017-02-25 01:17:37
 */
 (function(){
     'use strict';
@@ -14,27 +14,25 @@
             $scope.registerStat = "";
             $scope.match = "N/A";
             $scope.matchalert = false;
-            $scope.gifter = {};
+            $scope.santa = {};
             $scope.getter = {};
-            santa.lastSanta().then(function(response){
-                var last = response.data[0].name;
-                var lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
-                $scope.lastSanta = "" || lastSanta;
-            });
-            santa.count().then(function(response){
-                $scope.santas = response.data;
-            });
+            // santa.lastSanta().then(function(response){
+            //     var last = response.data[0].name;
+            //     var lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
+            //     $scope.lastSanta = "" || lastSanta;
+            // });
+            // santa.count().then(function(response){
+            //     $scope.santas = response.data;
+            // });
         }
         init();
 
-        $scope.addGifter = function(){
-            $scope.gifter.name = $scope.gifter.name || '';
-            $scope.gifter.spouse = $scope.gifter.spouse || '';
-            $scope.gifter.email = $scope.gifter.email || '';
-            $scope.gifter.pass = $scope.gifter.pass || '';
-            if ($scope.gifter.name.length !==0 && $scope.gifter.email.length !==0 && $scope.gifter.pass.length !==0){
-                console.log("addGifter: Good to talk to server");
-                santa.post($scope.gifter).then(function(response){
+        $scope.addSanta = function(){
+            $scope.santa.name = $scope.santa.name || '';
+            $scope.santa.spouse = $scope.santa.spouse || '';
+            if ($scope.santa.name.length !==0){
+                console.log("addSanta: Good to talk to server");
+                santa.post($scope.santa).then(function(response){
                     console.log('New Santa is added');
                 });
             }
