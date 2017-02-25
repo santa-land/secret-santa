@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 01:17:37
+* @Last Modified time: 2017-02-25 08:03:14
 */
 (function(){
     'use strict';
@@ -11,19 +11,20 @@
         function init(){
             $scope.santas = 0;
             $scope.lastSanta = "";
-            $scope.registerStat = "";
             $scope.match = "N/A";
-            $scope.matchalert = false;
+            $scope.passAlert = false;
+            $scope.admin = {};
             $scope.santa = {};
             $scope.getter = {};
-            // santa.lastSanta().then(function(response){
-            //     var last = response.data[0].name;
-            //     var lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
-            //     $scope.lastSanta = "" || lastSanta;
-            // });
-            // santa.count().then(function(response){
-            //     $scope.santas = response.data;
-            // });
+            $scope.terminate = false;
+            santa.lastSanta().then(function(response){
+                var last = response.data[0].name;
+                var lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
+                $scope.lastSanta = "" || lastSanta;
+            });
+            santa.count().then(function(response){
+                $scope.santas = response.data;
+            });
         }
         init();
 
@@ -36,12 +37,26 @@
                     console.log('New Santa is added');
                 });
             }
+            init();
         };
 
-        $scope.apply = function(){
-            santa.matchMaker().then(function(response){
-                console.log("Lock the registration and make matches!");
+        $scope.makeMatch = function(){
+            $scope.terminate = true;
+            $scope.admin.email = $scope.admin.email || '';
+            $scope.admin.pass = $scope.admin.pass || '';
+            console.log('teminate and make amatch');
+            santa.matchMaker($scope.admin).then(function(response){
+                console.log("Succes in pass/user info");
+                $scope.passAlert = false;
+            },function(error){
+                console.log('Error from server');
+                console.log(error.data);
+                $scope.passAlert = true;
             });
+        };
+
+        $scope.deleteRenew = function(){
+            $scope.terminate = false;
         };
 
         $scope.getMatch = function(){

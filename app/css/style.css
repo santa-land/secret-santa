@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 18:36:32
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-24 23:05:19
+* @Last Modified time: 2017-02-25 01:52:46
 */
 .navbar-inverse.navbar-fixed-top {
     background-color: rgb(188,27,57);
@@ -29,6 +29,14 @@
 
 .alert {
     padding: 5px;
+}
+
+.btn {
+    width: 100%;
+}
+
+.btn-danger {
+    margin-top: 15px;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
