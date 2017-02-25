@@ -2,12 +2,25 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 13:14:37
+* @Last Modified time: 2017-02-25 14:14:57
 */
 (function(){
+
+    /**
+     * secretSantaCtrl Controller that get info from santa factory.
+     *
+     * @function secretSantaCtrl
+     * @param {Object}  $scope    provided by  AngularJs 
+     * @param {Object}  santa     injected factory written by me.
+     */
     'use strict';
     angular.module('secretSantaApp').controller('secretSantaCtrl', ['$scope', 'santa', function($scope, santa){
 
+    /**
+     * It used for initialization of app at the begining and after each change.
+     *
+     * @function init
+     */
         function init(){
             $scope.santas = 0;
             $scope.lastSanta = "N/A";
@@ -31,6 +44,11 @@
         }
         init();
 
+        /**
+         * Adds new Santa, and send it server and mongoDB. It is connected to the SIGNUP BUTTOM
+         *
+         * @function addSanta
+         */
         $scope.addSanta = function(){
             $scope.santa.name = $scope.santa.name || '';
             $scope.santa.spouse = $scope.santa.spouse || '';
@@ -43,6 +61,12 @@
             init();
         };
 
+        /**
+         * If admin enter right email/password the he/she can terminate this round of giftitng. It is connected to the TERMINATE &MAKE MATCHES
+         * email is admin@smith.com
+         * password is 123
+         * @function makeMatch
+         */
         $scope.makeMatch = function(){
             $scope.admin.email = $scope.admin.email || '';
             $scope.admin.pass = $scope.admin.pass || '';
@@ -55,6 +79,13 @@
             });
         };
 
+        /**
+         * If admin enter right email/password the he/she can DELETE this round of giftitng. It is connected to the DELETE & RENEW button
+         * email is admin@smith.com
+         * password is 123
+         *
+         * @function deleteRenew
+         */
         $scope.deleteRenew = function(){
             $scope.admin.email = $scope.admin.email || '';
             $scope.admin.pass = $scope.admin.pass || '';
@@ -68,6 +99,11 @@
             });
         };
 
+        /**
+         * Shows the Santa his/her match to buy gift 
+         * 
+         * @function getMatch
+         */
         $scope.getMatch = function(){
             $scope.gifter.name = $scope.gifter.name || '';
             if ($scope.gifter.name.length !==0){
