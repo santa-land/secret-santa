@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 08:03:14
+* @Last Modified time: 2017-02-25 12:08:48
 */
 (function(){
     'use strict';
@@ -44,7 +44,6 @@
             $scope.terminate = true;
             $scope.admin.email = $scope.admin.email || '';
             $scope.admin.pass = $scope.admin.pass || '';
-            console.log('teminate and make amatch');
             santa.matchMaker($scope.admin).then(function(response){
                 console.log("Succes in pass/user info");
                 $scope.passAlert = false;
@@ -57,6 +56,14 @@
 
         $scope.deleteRenew = function(){
             $scope.terminate = false;
+            $scope.admin.email = $scope.admin.email || '';
+            $scope.admin.pass = $scope.admin.pass || '';
+            console.log("Deleting whole family pool");
+            santa.removeFamily().then(function(){
+                init();
+            }, function(error){
+
+            });
         };
 
         $scope.getMatch = function(){

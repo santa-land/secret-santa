@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-22 11:00:40
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 11:51:24
+* @Last Modified time: 2017-02-25 12:12:30
 */
 'use strict'
 
@@ -146,6 +146,20 @@ app.post('/makeMatch', (req, res) => {
     }
 
 });
+
+
+app.delete('/deletefamily', (req, res)  => {
+     if (req.body.email.length !== 0 && req.body.pass.length !== 0){
+        if (req.body.email === 'admin@smith.com' && req.body.pass === '123'){
+            db.collection('santas').drop((err, doc) => {
+                res.send(doc);
+            });
+        } else {
+            res.status(400).send('Wrong username and password for the admin');
+        }
+     }
+  });
+
 
 /**
  * Shuffles array in place. Fisher-Yates Shuffle 
