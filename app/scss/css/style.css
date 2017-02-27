@@ -1,0 +1,35 @@
+/*
+* @Author: Ali
+* @Date:   2017-02-26 12:35:45
+* @Last Modified by:   Ali
+* @Last Modified time: 2017-02-26 21:57:52
+*/
+.navbar-inverse.navbar-fixed-top {
+  background-color: #bc1b39;
+  position: relative; }
+
+.navbar-inverse.navbar-fixed-bottom {
+  background-color: #bc1b39;
+  position: fixed; }
+
+.navbar-header {
+  position: absolute;
+  left: 50%;
+  margin-left: -156px !important;
+  display: block;
+  color: white;
+  margin-top: 15px; }
+
+.centers {
+  margin-top: 170px; }
+
+.alert {
+  padding: 5px; }
+
+.btn {
+  width: 100%; }
+  .btn .btn-danger {
+    margin-top: 15px; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
