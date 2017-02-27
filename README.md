@@ -11,13 +11,14 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 - [Express](http://expressjs.com/)
 - [MongoDB](https://www.mongodb.org/), [MonngoLab](https://mlab.com/welcome/)
 - [Yarn](https://yarnpkg.com/lang/en/) Facebook Package Manager
+- [GulpJS](http://gulpjs.com/) : As my building tool
+- [SASS](http://sass-lang.com/): SCC of this project was short. but for warm up I put some SASS codes.
 
 ## APIs and technologies in the next few days :stuck_out_tongue_closed_eyes:
 Time for this project was short. I have to add moer stuff into that soon
-- [GulpJS](http://gulpjs.com/) : As my building tool
+
 - [JSdoc](http://usejsdoc.org/) : To provide documentation for the JS codes. Codes are currently commented wisely for this
 - [Jasmine](https://jasmine.github.io/): As my test framework.
-- [SASS](http://sass-lang.com/): SCC of this project was short. but for warm up I put some SASS codes.
 
 ## How to make it work on your machine
 - Assumptions: You have 'linux like terminal', `node` and `yarn` on your machine
