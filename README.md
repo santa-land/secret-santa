@@ -35,16 +35,16 @@ Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pag
 - This is for one family e.g Smith family. 
 - Each family member registers in the Christmas gift exchange to receive a gift.
 - People can not receive a gift from their spouse. 
-- Each Santa should to be able to consult the name of the person that he/she have drawn so he/she can buy an appropriate gift. 
+- Each Santa should be able to consult the name of the person that he/she have drawn so he/she can buy an appropriate gift. 
 -	We assume that all the participants have a unique name. 
 -	To get the name drawn for a participant, a member just has to enter his own name in the application. 
 -	The Application is based on an honor system.  All participants can access the results of everyone in the draw. 
 - The gift exchange admin can activate an automated draw to impress those who participate and save time.
-- Admin email is: `admin@smith.com`. And admin password is : `123`
-- Only if admin enters right information, then pool can be stoped to build matches. 
-- Only if admin enters right information, then pool can be deleted. 
+- Admin email is `admin@smith.com`. And admin password is `123`
+- Only if admin enters right information, then the pool can be stopped to build matches. 
+- Only if admin enters right information, then the pool can be deleted. 
 
 
 ## License
 The contents of this repository are covered under the [GPL License](LICENSE.txt). Please be Advised before redistributing.
-Start, fork, and collaboration is always welcomed  :heart: as it is a fun project for me.
+Star, Fork, and Collaboration are always welcomed  :heart: as it is a fun project for me.
