@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-26 10:38:27
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-26 21:42:33
+* @Last Modified time: 2017-02-26 23:17:31
 */
 
 'use strict';
@@ -15,6 +15,9 @@ const jsmin = require('gulp-jsmin');
 const processhtml = require('gulp-processhtml');
 const htmlmin = require('gulp-htmlmin');
 // const watch = require('gulp-watch');
+const path = require('path');
+const jsdoc = require('gulp-jsdoc3');
+const ghpages = require('gh-pages');
 
 // html
 gulp.task('process-html', () => {
@@ -67,6 +70,17 @@ gulp.task('watch', function() {
     gulp.watch('./app/scss/**/*.scss', ['minify-css']);
     gulp.watch('./app/js/**/*', ['minify-js']);
     gulp.watch('./app.images/**/*', ['images']);
+});
+
+// docs
+gulp.task('build-doc', (cb) => {
+    var config = require('./jsdoc.conf.json');
+    gulp.src(['./app/js/**/*.js', './server.js', './routes/route.js'], {read: false})
+        .pipe(jsdoc(config , cb));
+});
+
+gulp.task('publish-doc', ['build-doc'], () => {
+    ghpages.publish(path.join(__dirname, 'out'), console.error);
 });
 
 // default

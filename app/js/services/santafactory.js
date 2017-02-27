@@ -2,10 +2,17 @@
 * @Author: Ali
 * @Date:   2017-02-24 03:59:26
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 13:10:09
+* @Last Modified time: 2017-02-26 23:38:14
 */
 (function(){
     'use strict';
+     /**
+     * santa Factory that get info from santa factory.
+     *
+     * @function santa
+     * @param {Object}  $scope    provided by AngularJS 
+     * @return {Object} santa
+     */
     angular.module('secretSantaApp').factory('santa', ['$http', function($http){
         var santa = {};
         santa.post = function(newSanta){

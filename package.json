@@ -19,12 +19,14 @@
     "mongodb": "^2.2.24"
   },
   "devDependencies": {
+    "gh-pages": "^0.12.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean-css": "^3.0.3",
     "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.1.1",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-jslint": "^1.0.10",
     "gulp-jsmin": "^0.1.5",
     "gulp-minify": "^0.0.15",
@@ -34,6 +36,7 @@
     "gulp-watch": "^4.3.11",
     "htmlmin": "^0.0.7",
     "jsdoc": "^3.4.3",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7"
   }
 }
