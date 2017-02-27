@@ -44,6 +44,16 @@ Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pag
 - Only if admin enters right information, then the pool can be stopped to build matches. 
 - Only if admin enters right information, then the pool can be deleted. 
 
+## My approach
+- I found three dangrous scenarios.
+⋅⋅*  If parents are left at the end.
+⋅⋅*  One family of three people.
+⋅⋅*  Group of odd Santas if they exchange in couples, one of them will be left alone at the end.
+- I found two approaches to solve this question. and I went with the second approach.
+⋅⋅* Person N will have change from 1-99 selection, N-1 from 1-98, and ... Challenge conditions will be applied.
+⋅⋅* We do shuffling for the Santa list. If the shuffled array of Santas meets the condition then we are good to continue
+- If Santa enters his/her name twice server side should be able to handle duplication. With array it is easy. I was new to MongoDB but I fix it soon.
+- If Santa enter his/her spouse name, sever should be able to handle and build spouse object too. With array it is easy. I was new to MongoDB but I fix it soon.
 
 ## License
 The contents of this repository are covered under the [GPL License](LICENSE.txt). Please be Advised before redistributing.
