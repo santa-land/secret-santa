@@ -13,11 +13,11 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 - [Yarn](https://yarnpkg.com/lang/en/) Facebook Package Manager
 - [GulpJS](http://gulpjs.com/): As my building tool
 - [SASS](http://sass-lang.com/): css of this project was short. but for warm up I put some SASS codes.
+- [JSdoc](http://usejsdoc.org/): I am new to this. Codes are commented out both front and back ends. The output of JSdoc is on [gh-page of this repository](https://alireza-saberi.github.io/secret-santa/)
 
 ## APIs and technologies in the next few days :stuck_out_tongue_closed_eyes:
 Time for this project was short. I have to add more stuff into that soon
 
-- [JSdoc](http://usejsdoc.org/): To provide documentation for the JS codes. Codes are currently commented wisely for this
 - [Jasmine](https://jasmine.github.io/): As my test framework.
 
 ## How to make it work on your machine
@@ -27,6 +27,9 @@ Time for this project was short. I have to add more stuff into that soon
 - You need a `config` folder inside project `root`, and inside `config` should be two files `config.js` and `development.json. I can't put the here due to sensitive data.
 - Type `npm start` or `node server.js` in the working directory shell.
 - Go to your browser and type `localhost:3000` or `http://localhost:3000/`
+
+## Documentation
+Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pages of this project live [here](https://alireza-saberi.github.io/secret-santa/)
 
 ## License
 
