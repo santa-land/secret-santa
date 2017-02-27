@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-26 12:35:45
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-26 21:57:52
+* @Last Modified time: 2017-02-26 22:24:12
 */
 
 $sanra-color: rgb(188,27,57);
@@ -36,11 +36,12 @@ $sanra-color: rgb(188,27,57);
 
 .btn {
     width: 100%;
-
-    .btn-danger {
-        margin-top: 15px;
-    }
 }
+
+.btn.btn-danger {
+    margin-top: 15px;
+}
+
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
