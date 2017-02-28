@@ -1,4 +1,4 @@
-# Secret Santa
+# Overview
 Secret Santa :santa: is a Western Christmas tradition in which members of a group or community :family:are randomly assigned a person to whom they anonymously :alien: give a gift :gift:. This is a MEAN stack app for secret Santa.
 
 ## Demo
@@ -15,10 +15,12 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 - [SASS](http://sass-lang.com/): css of this project was short. but for warm up I put some SASS codes.
 - [JSdoc](http://usejsdoc.org/): I am new to this. Codes are commented out both front and back ends. The output of JSdoc is on [gh-page of this repository](https://alireza-saberi.github.io/secret-santa/)
 
-## APIs and technologies in the next few days :stuck_out_tongue_closed_eyes:
+## TODO
 Time for this project was short. I have to add more stuff into that soon
 
-- [Jasmine](https://jasmine.github.io/): As my test framework.
+- [] [Jasmine](https://jasmine.github.io/): As my test framework.
+- [] Avoid dupicated Santa.
+- [] Register spouse while a Santa registers.
 
 ## How to make it work on your machine
 - Assumptions: You have 'Linux like terminal', `node` and `yarn` on your machine
@@ -55,6 +57,11 @@ Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pag
 - If Santa enters his/her name twice server side should be able to handle duplication. With array it is easy. I was new to MongoDB but I fix it soon.
 - If Santa enter his/her spouse name, sever should be able to handle and build spouse object too. With array it is easy. I was new to MongoDB but I fix it soon.
 
+## Contribution			
+
+You can fork the repository, improve or fix some part of it and then send the pull requests back if you want to see them here. I really appreciate that. ❤️	
+
+
+
 ## License
-The contents of this repository are covered under the [GPL License](LICENSE.txt). Please be Advised before redistributing.
-Star, Fork, and Collaboration are always welcomed  :heart: as it is a fun project for me.
+[GPL License](LICENSE.txt)
