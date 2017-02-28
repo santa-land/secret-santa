@@ -18,9 +18,9 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 ## TODO
 Time for this project was short. I have to add more stuff into that soon
 
-- [] [Jasmine](https://jasmine.github.io/): As my test framework.
-- [] Avoid dupicated Santa.
-- [] Register spouse while a Santa registers.
+- [ ] [Jasmine](https://jasmine.github.io/): As my test framework.
+- [ ] Avoid dupicated Santa.
+- [ ] Register spouse while a Santa registers.
 
 ## How to make it work on your machine
 - Assumptions: You have 'Linux like terminal', `node` and `yarn` on your machine
