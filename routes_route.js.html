@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>DocStrap Source: routes/route.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">DocStrap</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#addSanta">addSanta</a></li><li><a href="global.html#deleteRenew">deleteRenew</a></li><li><a href="global.html#getMatch">getMatch</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#makeMatch">makeMatch</a></li><li><a href="global.html#santa">santa</a></li><li><a href="global.html#secretSantaCtrl">secretSantaCtrl</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: routes/route.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/*
+* @Author: Ali
+* @Date:   2017-02-25 13:31:00
+* @Last Modified by:   Ali
+* @Last Modified time: 2017-02-28 21:55:19
+*/
+
+module.exports = function(app, express, bodyParser, MongoClient, config, swaggerSpec){
+    'use strict'
+
+    // connecting to MoogoLab servive.
+    var db;
+    MongoClient.connect( config.mongoLaClient, (err, database) => {
+        if (err) return console.log(err);
+        db = database;
+        app.listen(app.get('port'), () => {
+            console.log('Server is listening on port ' + app.get('port') + '. Press CTRL-C to terminate.');
+        });
+    });
+
+    /**
+     * @swagger
+     * definition:
+     *   Santa:
+     *     properties:
+     *       name:
+     *         type: string
+     *       spouse:
+     *         type: string
+     *       match:
+     *         type: string
+     */
+
+    /**
+     * @swagger
+     * definition:
+     *   admin:
+     *     properties:
+     *       email:
+     *         type: string
+     *       password:
+     *         type: string
+     */
+
+    /**
+     * @swagger
+     * /lastsanta:
+     *   get:
+     *     tags:
+     *       - Santa
+     *     description: Returns name of last Santa who registered.
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Object of last Santa
+     *         schema:
+     *           $ref: '#/definitions/Santa'
+     */
+    app.get('/lastsanta', (req, res) => {
+        var cursor = db.collection('santas').find().limit(1).sort({$natural:-1}).toArray((err, results) => {
+             if (err) return console.log(err);
+             res.json(results);
+        });
+    });
+
+    /**
+     * @swagger
+     * /countsanta:
+     *   get:
+     *     tags:
+     *       - Santa
+     *     description: Returns number of Santas in database
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: object with a number in it
+     *         schema:
+     *           $ref: '#/definitions/Santa'
+     */
+    app.get('/countsanta', (req, res) => {
+        var cursor = db.collection('santas').find().toArray((err, results) => {
+             if (err) return console.log(err);
+             res.json(results.length);
+        });
+    });
+
+
+    /**
+     * @swagger
+     * /register:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Register Sanata, if they have spouse, they are supposed to enter it. At the moment, I couldnt cover removing duplicated santa, and making object for spouse in the same time.
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: santa
+     *         description: Santa object
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/Santa'
+     *     responses:
+     *       200:
+     *         description: Successfully created
+     */
+    app.post('/register', (req, res) => {
+        if (req.body.name.length !== 0){
+            // ideally check if the database is already created anf has something in it
+            // ideally check for duplicated santa
+            var newSanta = {};
+            newSanta.name = req.body.name.toLowerCase();
+            newSanta.spouse = req.body.spouse.toLowerCase();
+            newSanta.match = '';
+            db.collection('santas').save(newSanta, (err, result) => {
+                if (err) return console.log(err);
+                });
+                // I added this to handle duplicated case but it didnot work 
+                db.collection('santas').ensureIndex({'name': newSanta.name}, {unique: true, dropDups: true});
+                res.redirect('/');
+        } else {
+            res.redirect('/');
+        }
+    });
+
+
+    /**
+     * @swagger
+     * /myMatch:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Gives each Santa his/her match to buys a gift
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: santa
+     *         description: Santa object
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/Santa'
+     *     responses:
+     *       200:
+     *         description: Successfully receieved
+     */
+    app.post('/myMatch', (req, res) => {
+        if (req.body.name.length !== 0 ){
+            db.collection('santas').find({ name: req.body.name }).toArray((err, results) => {
+                if (results.length !==0) {
+                    // Correct name
+                    res.json(results[0]);
+                } else {
+                    // Wrong name
+                    res.json(results);
+                }
+            });
+        } else {
+            res.redirect('/');
+        }
+    });
+
+    /**
+     * @swagger
+     * /makeMatch:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Prodives match for each Santa if correct username and password is provided by admin. Shuffling technic is used.
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: admin
+     *         description: admin is in body. It has emailand password with it.
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/admin'
+     *     responses:
+     *       200:
+     *         description: Successfully receieved
+     */
+    app.post('/makeMatch', (req, res) => {
+        if (req.body.email.length !== 0 &amp;&amp; req.body.pass.length !== 0){
+            if (req.body.email === 'admin@smith.com' &amp;&amp; req.body.pass === '123'){
+                 // I am using shuffiling method.
+                    var santas = [];
+                    var matches = [];
+                    var ok = false;
+                    db.collection('santas').find().toArray((err, results) => {
+                        if (err) return console.log(err);
+                        santas = results;
+
+                        db.collection('santas').find().toArray((error, outputs) => {
+                            if (error) return console.log(error);
+                            matches = outputs;
+
+                            //shuffle until a good match
+                            var santaLength = santas.length;
+                            while(!ok) {
+                                shuffle(matches);
+                                var i = santaLength -1;
+                                while( i >= 0 ){
+                                    if(santas[i].name === matches[i].name || santas[i].spouse === matches[i].name ){
+                                         ok = false;
+                                         break;
+                                    }else{
+                                        ok = true;
+                                    }
+                                    i -= 1;
+                                }
+                            }
+                            // Once we are in a good shuffle, assign matches and save them
+                            if(ok) {
+                                var j = santaLength -1;
+                                while( j >= 0 ){
+                                    db.collection('santas').findOneAndUpdate(
+                                        {name: santas[j].name}, {$set: {match: matches[j].name}}, {new: true}, (err, doc) => {
+                                                                if(err){ console.log("Something wrong when updating data!");}
+                                                                j -= 1;
+                                                            }
+                                    );
+                                    santas[j].match = matches[j].name;
+                                    j -= 1;
+                                }
+                            }
+                        });
+                    });
+                res.send('We should have a match, now!');
+            } else {
+                res.status(400).send('Wrong username and password for the admin');
+            }
+        }
+
+    });
+
+
+    /**
+     * @swagger
+     * /deletefamily:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Deletes full Santa collection if correct username and password is provided by admin
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: admin
+     *         description: admin is in body. It has email and password with it.
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/admin'
+     *     responses:
+     *       200:
+     *         description: Successfully receieved
+     */
+    app.post('/deletefamily', (req, res)  => {
+         if (req.body.email.length !== 0 &amp;&amp; req.body.pass.length !== 0){
+            if (req.body.email === 'admin@smith.com' &amp;&amp; req.body.pass === '123'){
+                db.collection('santas').drop((err, doc) => {
+                    res.send(doc);
+                });
+            } else {
+                res.status(400).send('Wrong username and password for the admin');
+            }
+         }
+      });
+
+    // serve swagger
+    app.get('/swagger.json', function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(swaggerSpec);
+    });
+
+    /**
+     * Shuffles array in place. Fisher-Yates Shuffle 
+     * @param {Array} a items The array containing the items.
+     * @source http://jsfromhell.com/array/shuffle
+     */
+    function shuffle(array) {
+        let counter = array.length;
+
+        // While there are elements in the array
+        while (counter > 0) {
+            // Pick a random index
+            let index = Math.floor(Math.random() * counter);
+
+            // Decrease counter by 1
+            counter--;
+
+            // And swap the last element with it
+            let temp = array[counter];
+            array[counter] = array[index];
+            array[index] = temp;
+        }
+
+        return array;
+    }
+}</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Alireza Saberi 2017
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	
+		on Tue Feb 28th 2017
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
