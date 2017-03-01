@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-28 20:05:21
+* @Last Modified time: 2017-02-28 21:55:19
 */
 
 module.exports = function(app, express, bodyParser, MongoClient, config, swaggerSpec){
@@ -174,7 +174,7 @@ module.exports = function(app, express, bodyParser, MongoClient, config, swagger
      *       - application/json
      *     parameters:
      *       - name: admin
-     *         description: admin is in body. It has emai land pawword with it.
+     *         description: admin is in body. It has emailand password with it.
      *         in: body
      *         required: true
      *         schema:
@@ -249,7 +249,7 @@ module.exports = function(app, express, bodyParser, MongoClient, config, swagger
      *       - application/json
      *     parameters:
      *       - name: admin
-     *         description: admin is in body. It has emai land pawword with it.
+     *         description: admin is in body. It has email and password with it.
      *         in: body
      *         required: true
      *         schema:
