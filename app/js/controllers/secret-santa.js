@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-25 14:14:57
+* @Last Modified time: 2017-02-28 09:39:39
 */
 (function(){
 
@@ -32,7 +32,7 @@
             $scope.terminate = false;
             santa.lastSanta().then(function(response){
                 var lastSanta = "N/A";
-                if (response.data.length !== 0 ) { 
+                if (response.data.length !== 0 ) {
                     var last = response.data[0].name;
                     lastSanta = last.charAt(0).toUpperCase() + last.substr(1).toLowerCase();
                 }
@@ -50,7 +50,12 @@
          * @function addSanta
          */
         $scope.addSanta = function(){
+            /** Name for Santa which is assumed to be unique 
+            * @default "" 
+            * @type {string}
+            */
             $scope.santa.name = $scope.santa.name || '';
+            /** @default "" */
             $scope.santa.spouse = $scope.santa.spouse || '';
             if ($scope.santa.name.length !==0){
                 // console.log("addSanta: Good to talk to server");
@@ -68,7 +73,9 @@
          * @function makeMatch
          */
         $scope.makeMatch = function(){
+            /** @default "" */
             $scope.admin.email = $scope.admin.email || '';
+            /** @default "" */
             $scope.admin.pass = $scope.admin.pass || '';
             santa.matchMaker($scope.admin).then(function(response){
                 $scope.passAlert = false;
@@ -87,7 +94,9 @@
          * @function deleteRenew
          */
         $scope.deleteRenew = function(){
+            /** @default "" */
             $scope.admin.email = $scope.admin.email || '';
+            /** @default "" */
             $scope.admin.pass = $scope.admin.pass || '';
             santa.removeFamily($scope.admin).then(function(response){
                 $scope.terminate = false;
@@ -105,6 +114,7 @@
          * @function getMatch
          */
         $scope.getMatch = function(){
+            /** @default "" */
             $scope.gifter.name = $scope.gifter.name || '';
             if ($scope.gifter.name.length !==0){
                 santa.getMatch($scope.gifter).then(function(response){

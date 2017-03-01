@@ -2,10 +2,10 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-26 23:35:13
+* @Last Modified time: 2017-02-28 20:05:21
 */
 
-module.exports = function(app, express, bodyParser, MongoClient, config){
+module.exports = function(app, express, bodyParser, MongoClient, config, swaggerSpec){
     'use strict'
 
     // connecting to MoogoLab servive.
@@ -19,8 +19,43 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
     });
 
     /**
-     * Gives the name of last registered Santa to be shown in the dashboard
-     * @memberof app
+     * @swagger
+     * definition:
+     *   Santa:
+     *     properties:
+     *       name:
+     *         type: string
+     *       spouse:
+     *         type: string
+     *       match:
+     *         type: string
+     */
+
+    /**
+     * @swagger
+     * definition:
+     *   admin:
+     *     properties:
+     *       email:
+     *         type: string
+     *       password:
+     *         type: string
+     */
+
+    /**
+     * @swagger
+     * /lastsanta:
+     *   get:
+     *     tags:
+     *       - Santa
+     *     description: Returns name of last Santa who registered.
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Object of last Santa
+     *         schema:
+     *           $ref: '#/definitions/Santa'
      */
     app.get('/lastsanta', (req, res) => {
         var cursor = db.collection('santas').find().limit(1).sort({$natural:-1}).toArray((err, results) => {
@@ -30,8 +65,19 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
     });
 
     /**
-     * Counts number of register Santa to be shown in dashboard
-     * @memberof app
+     * @swagger
+     * /countsanta:
+     *   get:
+     *     tags:
+     *       - Santa
+     *     description: Returns number of Santas in database
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: object with a number in it
+     *         schema:
+     *           $ref: '#/definitions/Santa'
      */
     app.get('/countsanta', (req, res) => {
         var cursor = db.collection('santas').find().toArray((err, results) => {
@@ -40,9 +86,26 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
         });
     });
 
+
     /**
-     * Register Sanata, if they have spouse, they are supposed to enter it. At the moment, I couldnt cover removing duplicated santa, and making object for spouse in the same time.
-     * @memberof app
+     * @swagger
+     * /register:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Register Sanata, if they have spouse, they are supposed to enter it. At the moment, I couldnt cover removing duplicated santa, and making object for spouse in the same time.
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: santa
+     *         description: Santa object
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/Santa'
+     *     responses:
+     *       200:
+     *         description: Successfully created
      */
     app.post('/register', (req, res) => {
         if (req.body.name.length !== 0){
@@ -63,9 +126,26 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
         }
     });
 
+
     /**
-     * Gives each Santa his/her match ro buys gift
-     * @memberof app
+     * @swagger
+     * /myMatch:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Gives each Santa his/her match to buys a gift
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: santa
+     *         description: Santa object
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/Santa'
+     *     responses:
+     *       200:
+     *         description: Successfully receieved
      */
     app.post('/myMatch', (req, res) => {
         if (req.body.name.length !== 0 ){
@@ -84,8 +164,24 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
     });
 
     /**
-     * Prodives match for each Santa if correct username and password is provided by admin. Shuffling technic is used.
-     * @memberof app
+     * @swagger
+     * /makeMatch:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Prodives match for each Santa if correct username and password is provided by admin. Shuffling technic is used.
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: admin
+     *         description: admin is in body. It has emai land pawword with it.
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/admin'
+     *     responses:
+     *       200:
+     *         description: Successfully receieved
      */
     app.post('/makeMatch', (req, res) => {
         if (req.body.email.length !== 0 && req.body.pass.length !== 0){
@@ -141,9 +237,26 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
 
     });
 
+
     /**
-     * Deletes full Santa collection if correct username and password is provided by admin
-     * @memberof app
+     * @swagger
+     * /deletefamily:
+     *   post:
+     *     tags:
+     *       - Santa
+     *     description: Deletes full Santa collection if correct username and password is provided by admin
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: admin
+     *         description: admin is in body. It has emai land pawword with it.
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/admin'
+     *     responses:
+     *       200:
+     *         description: Successfully receieved
      */
     app.post('/deletefamily', (req, res)  => {
          if (req.body.email.length !== 0 && req.body.pass.length !== 0){
@@ -156,6 +269,12 @@ module.exports = function(app, express, bodyParser, MongoClient, config){
             }
          }
       });
+
+    // serve swagger
+    app.get('/swagger.json', function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(swaggerSpec);
+    });
 
     /**
      * Shuffles array in place. Fisher-Yates Shuffle 

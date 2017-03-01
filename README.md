@@ -13,7 +13,9 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 - [Yarn](https://yarnpkg.com/lang/en/) Facebook Package Manager
 - [GulpJS](http://gulpjs.com/): As my building tool
 - [SASS](http://sass-lang.com/): css of this project was short. but for warm up I put some SASS codes.
-- [JSdoc](http://usejsdoc.org/): I am new to this. Codes are commented out both front and back ends. The output of JSdoc is on [gh-page of this repository](https://alireza-saberi.github.io/secret-santa/)
+- [JSdoc](http://usejsdoc.org/): I am new to world! Codes are commented accordingly. For frontend JSdoc redult is on [gh-page of this repository](https://alireza-saberi.github.io/secret-santa/), and back-end RESTful API I learned about the [Swagger way](http://mherman.org/blog/2016/05/26/swagger-and-nodejs/#.WLYUNIErKUn), and I add it to project. So can find the `Demonstrating Secret Santa RESTful API with Swagger` at this address `http://localhost:3000/api-docs/`
+
+![swagger](doc-images/swagger.PNG)
 
 ## TODO
 Time for this project was short. I have to add more stuff into that soon
