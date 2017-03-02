@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-28 21:55:19
+* @Last Modified time: 2017-03-02 06:57:14
 */
 
 module.exports = function(app, express, bodyParser, MongoClient, config, swaggerSpec){
@@ -149,7 +149,7 @@ module.exports = function(app, express, bodyParser, MongoClient, config, swagger
      */
     app.post('/myMatch', (req, res) => {
         if (req.body.name.length !== 0 ){
-            db.collection('santas').find({ name: req.body.name }).toArray((err, results) => {
+            db.collection('santas').find({ name: req.body.name.toLowerCase()}).toArray((err, results) => {
                 if (results.length !==0) {
                     // Correct name
                     res.json(results[0]);
