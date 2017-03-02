@@ -2,10 +2,10 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-02 06:57:14
+* @Last Modified time: 2017-03-02 11:49:09
 */
 
-module.exports = function(app, express, bodyParser, MongoClient, config, swaggerSpec){
+module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) => {
     'use strict'
 
     // connecting to MoogoLab servive.
@@ -271,7 +271,7 @@ module.exports = function(app, express, bodyParser, MongoClient, config, swagger
       });
 
     // serve swagger
-    app.get('/swagger.json', function(req, res) {
+    app.get('/swagger.json', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(swaggerSpec);
     });
