@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-03 07:01:30
+* @Last Modified time: 2017-03-03 09:44:39
 */
 (function(){
 
@@ -59,9 +59,9 @@
             /** @default "" */
             $scope.santa.spouse = $scope.santa.spouse || '';
             if ($scope.santa.name.length !==0){
-                // console.log("addSanta: Good to talk to server");
+                console.log("addSanta: Good to talk to server");
                 santa.post($scope.santa).then(function(response){
-                    // console.log('New Santa is added');
+                    console.log('New Santa is added');
                     init();
                 }, function(error){
                     console.log('Error from server: %s', error.data);

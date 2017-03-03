@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-03 06:28:34
+* @Last Modified time: 2017-03-03 09:53:08
 */
 
 module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) => {
@@ -113,7 +113,7 @@ module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) =>
             // ideally check for duplicated santa
             var santas = [];
             var newSanta = {};
-            var ok = false;
+            var ok = true;
             newSanta.name = req.body.name.toLowerCase();
             newSanta.spouse = req.body.spouse.toLowerCase();
             newSanta.match = '';
@@ -125,9 +125,11 @@ module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) =>
                         var j = santaLength - 1;
                         while ( j >= 0 ){
                             if ( newSanta.name === santas[j].name ) {
+                                // console.log('santa is no ok!');
                                 ok = false;
                                 break;
                             }else{
+                                // console.log('santa is ok!');
                                 ok = true;
                             }
                             j -= 1;
