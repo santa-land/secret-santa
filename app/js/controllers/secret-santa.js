@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-03 06:12:37
+* @Last Modified time: 2017-03-03 06:53:17
 */
 (function(){
 
@@ -26,6 +26,7 @@
             $scope.lastSanta = "N/A";
             $scope.match = "N/A";
             $scope.passAlert = false;
+            $scope.duplicatedAlert = false;
             $scope.admin = {};
             $scope.santa = {};
             $scope.getter = {};
@@ -61,9 +62,13 @@
                 // console.log("addSanta: Good to talk to server");
                 santa.post($scope.santa).then(function(response){
                     // console.log('New Santa is added');
+                    init();
+                }, function(error){
+                    console.log('Error from server: %s', error.data);
+                    $scope.duplicatedAlert = true;
                 });
             }
-            init();
+
         };
 
         /**

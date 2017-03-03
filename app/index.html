@@ -89,6 +89,9 @@
                             </p>
                             <form novalidate name="myRegisterForm">
                                 <div class="form-group">
+                                    <header data-ng-show="duplicatedAlert" class="alert alert-danger" role="alert">
+                                        This Santa info was entered before.
+                                    </header>
                                     <label for="name">
                                         Name <span class="alert alert-danger" data-ng-show="myRegisterForm.name.$dirty && myRegisterForm.name.$invalid">
                                          <span data-ng-show="myRegisterForm.name.$error.required">
