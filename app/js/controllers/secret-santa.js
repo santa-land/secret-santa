@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-23 22:56:03
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-03 06:53:17
+* @Last Modified time: 2017-03-03 07:01:30
 */
 (function(){
 
@@ -125,7 +125,7 @@
                 santa.getMatch($scope.gifter).then(function(response){
                     if (response.data) {
                         if (response.data.match.length !==0){
-                            $scope.match = response.data.match;
+                            $scope.match = response.data.match.charAt(0).toUpperCase() + response.data.match.substr(1).toLowerCase();
                             $scope.matchalert = false;
                         }else{
                             $scope.match = "N/A";
