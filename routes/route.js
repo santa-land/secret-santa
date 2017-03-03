@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-02 11:49:09
+* @Last Modified time: 2017-03-03 06:28:34
 */
 
 module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) => {
@@ -111,16 +111,37 @@ module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) =>
         if (req.body.name.length !== 0){
             // ideally check if the database is already created anf has something in it
             // ideally check for duplicated santa
+            var santas = [];
             var newSanta = {};
+            var ok = false;
             newSanta.name = req.body.name.toLowerCase();
             newSanta.spouse = req.body.spouse.toLowerCase();
             newSanta.match = '';
-            db.collection('santas').save(newSanta, (err, result) => {
-                if (err) return console.log(err);
-                });
-                // I added this to handle duplicated case but it didnot work 
-                db.collection('santas').ensureIndex({'name': newSanta.name}, {unique: true, dropDups: true});
-                res.redirect('/');
+
+            db.collection('santas').find().toArray((err, results) => {
+                        if (err) return console.log(err);
+                        santas = results;
+                        var santaLength = santas.length;
+                        var j = santaLength - 1;
+                        while ( j >= 0 ){
+                            if ( newSanta.name === santas[j].name ) {
+                                ok = false;
+                                break;
+                            }else{
+                                ok = true;
+                            }
+                            j -= 1;
+                        }
+                        if ( ok ) {
+                            db.collection('santas').save(newSanta, (err, result) => {
+                                if (err) return console.log(err);
+                                res.redirect('/');
+                            });
+                        } else {
+                            res.status(400).send('Wrong username and password for the admin');
+                        }
+            });
+
         } else {
             res.redirect('/');
         }
