@@ -21,7 +21,7 @@ Secret Santa :santa: is a Western Christmas tradition in which members of a grou
 Time for this project was short. I have to add more stuff into that soon
 
 - [ ] [Jasmine](https://jasmine.github.io/): As my test framework.
-- [ ] Avoid dupicated Santa.
+- [X] Avoid dupicated Santa.
 - [ ] Register spouse while a Santa registers.
 
 ## How to make it work on your machine
