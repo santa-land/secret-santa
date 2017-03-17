@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-25 13:31:00
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-03-03 09:53:08
+* @Last Modified time: 2017-03-17 01:01:55
 */
 
 module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) => {
@@ -124,8 +124,8 @@ module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) =>
                         var santaLength = santas.length;
                         var j = santaLength - 1;
                         while ( j >= 0 ){
-                            if ( newSanta.name === santas[j].name ) {
-                                // console.log('santa is no ok!');
+                            if ( newSanta.name === santas[j].name || newSanta.spouse === santas[j].name) {
+                                // console.log('santa is not ok!');
                                 ok = false;
                                 break;
                             }else{
@@ -137,10 +137,18 @@ module.exports = (app, express, bodyParser, MongoClient, config, swaggerSpec) =>
                         if ( ok ) {
                             db.collection('santas').save(newSanta, (err, result) => {
                                 if (err) return console.log(err);
+                                if ( newSanta.spouse.length !== 0 ) {
+                                    var temp = newSanta.name;
+                                    newSanta.name = newSanta.spouse;
+                                    newSanta.spouse = temp;
+                                    db.collection('santas').save(newSanta, (err, result) => {
+                                        if (err) return console.log(err);
+                                    })
+                                }
                                 res.redirect('/');
                             });
                         } else {
-                            res.status(400).send('Wrong username and password for the admin');
+                            res.status(400).send('This Santa was entered before.');
                         }
             });
 
