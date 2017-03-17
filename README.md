@@ -22,7 +22,12 @@ Time for this project was short. I have to add more stuff into that soon
 
 - [ ] [Jasmine](https://jasmine.github.io/): As my test framework.
 - [X] Avoid dupicated Santa.
-- [ ] Register spouse while a Santa registers.
+- [X] Register spouse while a Santa registers.
+- [ ] Mutiple family events: Waiting for round one review from interviewers.
+- [ ] Refactoring UI codes for log-in based pools: Waiting for round one review from interviewers.
+- [ ] None unique participants: Waiting for round one review from interviewers.
+- [ ] [Emailing secret santa participants](https://github.com/ejthompson87/secret-santa): Waiting for round one review from interviewers.
+- [ ] [Secret Santa over SMS with Twilio](https://github.com/lukekarrys/secret-santa-twilio): Waiting for round one review from interviewers.
 
 ## How to make it work on your machine
 - Assumptions: You have 'Linux like terminal', `node` and `yarn` on your machine
@@ -63,7 +68,8 @@ Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pag
 
 You can fork the repository, improve or fix some part of it and then send the pull requests back if you want to see them here. I really appreciate that. ❤️	
 
-
+## Issue tracker
+Available [here](https://github.com/alireza-saberi/secret-santa/issues)
 
 ## License
 [GPL License](LICENSE.txt)
