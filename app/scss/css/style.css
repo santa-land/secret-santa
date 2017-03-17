@@ -2,7 +2,7 @@
 * @Author: Ali
 * @Date:   2017-02-26 12:35:45
 * @Last Modified by:   Ali
-* @Last Modified time: 2017-02-26 22:24:12
+* @Last Modified time: 2017-03-16 23:48:21
 */
 .navbar-inverse.navbar-fixed-top {
   background-color: #bc1b39;
@@ -11,6 +11,10 @@
 .navbar-inverse.navbar-fixed-bottom {
   background-color: #bc1b39;
   position: fixed; }
+  .navbar-inverse.navbar-fixed-bottom .footer-header {
+    text-align: center;
+    color: white;
+    padding-top: 15px; }
 
 .navbar-header {
   position: absolute;
