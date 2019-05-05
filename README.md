@@ -47,7 +47,7 @@ Time for this project was short. I have to add more stuff into that soon
 
 ## Documentation
 
-Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pages of this project live [here](https://alireza-saberi.github.io/secret-santa/)
+Using jsDoc3 and gulp-pages, I have provided a small documentation on the gh-pages of this project live [here](https://santa-land.github.io/secret-santa/)
 
 ## General Assumptions
 
